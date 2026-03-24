@@ -12,19 +12,6 @@
   --font-family-sans: 'Inter', sans-serif;
 }
 
-/* Design tokens (also as CSS vars for direct use) */
-:root {
-  --color-bg:      #0a0a0a;
-  --color-surface: #111111;
-  --color-border:  #1f1f1f;
-  --color-text:    #e5e5e5;
-  --color-muted:   #6b7280;
-  --color-accent:  #22d3ee;
-
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-sans: 'Inter', sans-serif;
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -38,7 +25,7 @@ html {
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-sans);
+  font-family: var(--font-family-sans);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -54,7 +41,7 @@ body {
 #bio-text,
 #bio-accent,
 #contact-inner {
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 /* Scrollbar */
