@@ -29,7 +29,7 @@ const categories = [
           <h3 class="font-mono text-muted text-xs tracking-widest uppercase mb-5">{cat.label}</h3>
           <div class="flex flex-wrap gap-3 justify-center">
             {cat.skills.map((skill) => (
-              <span class="skill-pill font-mono text-sm px-4 py-2 border border-border text-muted opacity-0 translate-y-[10px]">
+              <span class="skill-pill font-mono text-sm px-4 py-2 border border-border text-muted">
                 {skill}
               </span>
             ))}
@@ -46,9 +46,9 @@ const categories = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.to(".skill-pill", {
-    opacity: 1,
-    y: 0,
+  gsap.from(".skill-pill", {
+    opacity: 0,
+    y: 10,
     duration: 0.5,
     stagger: 0.05,
     ease: "power2.out",
