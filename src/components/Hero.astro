@@ -1,0 +1,98 @@
+---
+// No server-side props needed
+---
+
+<section id="hero" class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+  <!-- Particle canvas -->
+  <div id="tsparticles" class="absolute inset-0 z-0"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4">
+    <h1 class="font-mono text-5xl md:text-7xl font-semibold text-text mb-4">
+      <span id="typing-text"></span><span id="cursor" class="text-accent">_</span>
+    </h1>
+    <p class="font-sans text-lg md:text-xl text-muted mb-10 tracking-widest uppercase">
+      MSc Student · AI &amp; ML Researcher
+    </p>
+    <div class="flex gap-4 justify-center">
+      <a
+        href="https://github.com/TalesMiguel"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 border border-accent text-accent font-mono text-sm hover:bg-accent hover:text-bg transition-colors duration-200"
+      >
+        GitHub ↗
+      </a>
+      <a
+        href="#bio"
+        class="px-6 py-3 border border-border text-muted font-mono text-sm hover:border-text hover:text-text transition-colors duration-200"
+      >
+        Scroll down ↓
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { tsParticles } from "@tsparticles/engine";
+  import { loadSlim } from "@tsparticles/slim";
+
+  // Init particles
+  await loadSlim(tsParticles);
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      background: { color: { value: "#0a0a0a" } },
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "repulse" },
+        },
+        modes: {
+          repulse: { distance: 80, duration: 0.4 },
+        },
+      },
+      particles: {
+        color: { value: "#22d3ee" },
+        links: {
+          color: "#1f1f1f",
+          distance: 150,
+          enable: true,
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 0.6,
+          outModes: { default: "bounce" },
+        },
+        number: { density: { enable: true }, value: 60 },
+        opacity: { value: 0.3 },
+        size: { value: { min: 1, max: 2 } },
+      },
+      detectRetina: true,
+    },
+  });
+
+  // Typing effect
+  const text = "Tales Miguel";
+  const el = document.getElementById("typing-text")!;
+  const cursor = document.getElementById("cursor")!;
+  let i = 0;
+
+  function type() {
+    if (i < text.length) {
+      el.textContent += text[i];
+      i++;
+      setTimeout(type, 100);
+    }
+  }
+
+  // Blink cursor
+  setInterval(() => {
+    cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
+  }, 530);
+
+  // Start typing after short delay
+  setTimeout(type, 400);
+</script>
