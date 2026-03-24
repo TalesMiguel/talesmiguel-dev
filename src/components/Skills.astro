@@ -19,15 +19,15 @@ const categories = [
 ];
 ---
 
-<section id="skills" class="py-24 px-6">
-  <div class="max-w-3xl mx-auto">
-    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-10 block">Skills</span>
+<section id="skills" class="py-36 px-6">
+  <div class="max-w-3xl mx-auto text-center">
+    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-12 block">Skills</span>
 
-    <div class="space-y-8">
+    <div class="space-y-10">
       {categories.map((cat) => (
         <div>
-          <h3 class="font-mono text-muted text-xs tracking-widest uppercase mb-4">{cat.label}</h3>
-          <div class="flex flex-wrap gap-3">
+          <h3 class="font-mono text-muted text-xs tracking-widest uppercase mb-5">{cat.label}</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
             {cat.skills.map((skill) => (
               <span class="skill-pill font-mono text-sm px-4 py-2 border border-border text-muted opacity-0 translate-y-[10px]">
                 {skill}
