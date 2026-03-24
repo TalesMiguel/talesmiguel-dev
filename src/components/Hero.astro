@@ -85,14 +85,18 @@
       el.textContent += text[i];
       i++;
       setTimeout(type, 100);
+    } else {
+      const blinkInterval = setInterval(() => {
+        cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
+      }, 530);
+      document.addEventListener(
+        "astro:before-swap",
+        () => clearInterval(blinkInterval),
+        { once: true }
+      );
     }
   }
 
-  // Blink cursor
-  setInterval(() => {
-    cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
-  }, 530);
-
-  // Start typing after short delay
+  // Start typing after short delay — blink begins only after typing completes
   setTimeout(type, 400);
 </script>
