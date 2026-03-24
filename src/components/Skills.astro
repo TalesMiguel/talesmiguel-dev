@@ -1,0 +1,56 @@
+---
+const categories = [
+  {
+    label: "Languages",
+    skills: ["Python", "C++", "JavaScript", "TypeScript", "SQL"],
+  },
+  {
+    label: "ML / AI",
+    skills: ["PyTorch", "TensorFlow", "scikit-learn", "Hugging Face", "OpenCV"],
+  },
+  {
+    label: "Tools & Infra",
+    skills: ["Git", "Docker", "Linux", "Vercel", "Jupyter"],
+  },
+];
+---
+
+<section id="skills" class="py-24 px-6">
+  <div class="max-w-3xl mx-auto">
+    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-10 block">Skills</span>
+
+    <div class="space-y-8">
+      {categories.map((cat) => (
+        <div>
+          <h3 class="font-mono text-muted text-xs tracking-widest uppercase mb-4">{cat.label}</h3>
+          <div class="flex flex-wrap gap-3">
+            {cat.skills.map((skill) => (
+              <span class="skill-pill font-mono text-sm px-4 py-2 border border-border text-muted opacity-0 translate-y-[10px]">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.to(".skill-pill", {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    stagger: 0.05,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: "#skills",
+      start: "top 75%",
+    },
+  });
+</script>
