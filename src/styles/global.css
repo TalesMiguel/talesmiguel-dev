@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bg:      #0a0a0a;
+  --color-surface: #111111;
+  --color-border:  #1f1f1f;
+  --color-text:    #e5e5e5;
+  --color-muted:   #6b7280;
+  --color-accent:  #22d3ee;
+
+  --font-family-mono: 'JetBrains Mono', monospace;
+  --font-family-sans: 'Inter', sans-serif;
+}
+
+/* Design tokens (also as CSS vars for direct use) */
+:root {
+  --color-bg:      #0a0a0a;
+  --color-surface: #111111;
+  --color-border:  #1f1f1f;
+  --color-text:    #e5e5e5;
+  --color-muted:   #6b7280;
+  --color-accent:  #22d3ee;
+
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* GPU acceleration for animated elements */
+.skill-pill,
+.exp-item,
+#bio-text,
+#bio-accent,
+#contact-inner {
+  will-change: transform;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
