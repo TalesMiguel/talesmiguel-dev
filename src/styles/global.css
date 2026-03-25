@@ -20,6 +20,9 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 body {
@@ -28,6 +31,13 @@ body {
   font-family: var(--font-family-sans);
   line-height: 1.6;
   overflow-x: hidden;
+  height: 100%;
+}
+
+/* Each section snaps to viewport */
+section {
+  scroll-snap-align: start;
+  min-height: 100vh;
 }
 
 ::selection {
