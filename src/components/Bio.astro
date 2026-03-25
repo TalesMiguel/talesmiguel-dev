@@ -5,31 +5,35 @@ const accent = "When not training models, you'll likely find me behind a drum ki
 
 <section id="bio" class="bg-surface px-6 flex flex-col items-center justify-center">
   <div class="w-full max-w-2xl text-left">
-    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-8 block">About</span>
-    <p id="bio-text" class="text-text text-lg leading-relaxed mb-16">
+    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-8 block animate-item">About</span>
+    <p id="bio-text" class="text-text text-lg leading-relaxed mb-16 animate-item">
       {bio}
     </p>
-    <p id="bio-accent" class="font-mono text-accent text-sm border-l-2 border-accent pl-4 text-left">
+    <p id="bio-accent" class="font-mono text-accent text-sm border-l-2 border-accent pl-4 animate-item">
       {accent}
     </p>
   </div>
 </section>
 
+<style>
+  .animate-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .animate-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .animate-item:nth-child(2) { transition-delay: 0.15s; }
+  .animate-item:nth-child(3) { transition-delay: 0.30s; }
+</style>
+
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from(["#bio-text", "#bio-accent"], {
-    opacity: 0,
-    x: -20,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#bio",
-      start: "top 75%",
-    },
-  });
+  const items = document.querySelectorAll('#bio .animate-item');
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.3 }
+  );
+  items.forEach(el => observer.observe(el));
 </script>

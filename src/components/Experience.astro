@@ -35,13 +35,12 @@ const items = [
 
 <section id="experience" class="bg-surface py-20 px-6 flex flex-col items-center justify-center">
   <div class="w-full max-w-2xl">
-    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-12 block text-center">Experience & Education</span>
+    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-12 block text-center animate-item">Experience & Education</span>
 
     <div class="relative border-l-2 border-border pl-8 space-y-16">
-      {items.map((item, i) => (
-        <div class="exp-item relative" data-index={i}>
+      {items.map((item) => (
+        <div class="exp-item relative animate-item">
           <div class="absolute -left-[41px] w-4 h-4 rounded-full bg-surface border-2 border-accent"></div>
-
           <span class="font-mono text-accent text-xs tracking-widest uppercase">{item.period}</span>
           <h3 class="text-text font-semibold text-lg mt-1">{item.title}</h3>
           <p class="text-muted text-sm mt-1">{item.org}</p>
@@ -52,21 +51,23 @@ const items = [
   </div>
 </section>
 
+<style>
+  .animate-item {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .animate-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from(".exp-item", {
-    opacity: 0,
-    x: 20,
-    duration: 0.7,
-    stagger: 0.2,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#experience",
-      start: "top 75%",
-    },
-  });
+  const items = document.querySelectorAll('#experience .animate-item');
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  items.forEach(el => observer.observe(el));
 </script>

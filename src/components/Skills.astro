@@ -21,15 +21,15 @@ const categories = [
 
 <section id="skills" class="px-6 flex flex-col items-center justify-center">
   <div class="w-full max-w-3xl text-center">
-    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-12 block">Skills</span>
+    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-12 block animate-item">Skills</span>
 
     <div class="space-y-10">
       {categories.map((cat) => (
-        <div>
+        <div class="animate-item">
           <h3 class="font-mono text-muted text-xs tracking-widest uppercase mb-5">{cat.label}</h3>
           <div class="flex flex-wrap gap-3 justify-center">
             {cat.skills.map((skill) => (
-              <span class="skill-pill font-mono text-sm px-4 py-2 border border-border text-muted">
+              <span class="font-mono text-sm px-4 py-2 border border-border text-muted">
                 {skill}
               </span>
             ))}
@@ -40,21 +40,27 @@ const categories = [
   </div>
 </section>
 
+<style>
+  .animate-item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .animate-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .animate-item:nth-child(2) { transition-delay: 0.1s; }
+  .animate-item:nth-child(3) { transition-delay: 0.2s; }
+  .animate-item:nth-child(4) { transition-delay: 0.3s; }
+  .animate-item:nth-child(5) { transition-delay: 0.4s; }
+</style>
+
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from(".skill-pill", {
-    opacity: 0,
-    y: 10,
-    duration: 0.5,
-    stagger: 0.05,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#skills",
-      start: "top 75%",
-    },
-  });
+  const items = document.querySelectorAll('#skills .animate-item');
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.2 }
+  );
+  items.forEach(el => observer.observe(el));
 </script>
