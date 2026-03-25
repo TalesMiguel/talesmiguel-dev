@@ -1,0 +1,115 @@
+---
+// src/components/Terminal.astro
+---
+
+<section id="terminal" class="px-6 flex flex-col items-center justify-center bg-bg">
+  <div class="w-full max-w-2xl">
+    <!-- Terminal window -->
+    <div class="terminal-window border border-border rounded-lg overflow-hidden">
+      <!-- Title bar -->
+      <div class="flex items-center gap-2 px-4 py-3 bg-surface border-b border-border">
+        <span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#febc2e]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#28c840]"></span>
+        <span class="font-mono text-muted text-xs ml-2">tales@dev ~</span>
+      </div>
+
+      <!-- Terminal body -->
+      <div class="p-6 font-mono text-sm leading-relaxed bg-bg">
+        <div class="text-muted">
+          <span class="text-accent">~</span> via <span class="text-accent">ssh</span>
+        </div>
+        <div class="mt-4">
+          <span class="text-accent">$</span>
+          <span id="terminal-cmd" class="text-text ml-2"></span>
+          <span id="terminal-cursor" class="text-accent">█</span>
+        </div>
+
+        <!-- Output that appears after typing -->
+        <div id="terminal-output" class="mt-6 hidden">
+          <div class="text-muted text-xs mb-4">Connecting to ssh.talesmiguel.dev...</div>
+          <pre class="text-accent text-xs leading-tight">
+ _____     _             __  __ _                  _
+|_   _|_ _| | ___  ___  |  \/  (_) __ _ _   _  ___| |
+  | |/ _` | |/ _ \/ __| | |\/| | |/ _` | | | |/ _ \ |
+  | | (_| | |  __/\__ \ | |  | | | (_| | |_| |  __/ |
+  |_|\__,_|_|\___||___/ |_|  |_|_|\__, |\__,_|\___|_|
+                                   |___/
+          </pre>
+          <div class="mt-4 text-muted text-xs">
+            <p>Welcome! Navigate with <span class="text-accent">arrow keys</span> or <span class="text-accent">j/k</span></p>
+            <p class="mt-1">
+              <span class="text-accent">[about]</span>
+              <span class="text-muted ml-2">[skills]</span>
+              <span class="text-muted ml-2">[experience]</span>
+              <span class="text-muted ml-2">[education]</span>
+              <span class="text-muted ml-2">[contact]</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA below terminal -->
+    <p class="text-center text-muted text-sm font-mono mt-6 animate-item">
+      Try it yourself:
+      <code class="text-accent bg-surface px-2 py-1 rounded ml-1 select-all">ssh ssh.talesmiguel.dev</code>
+    </p>
+  </div>
+</section>
+
+<style>
+  .terminal-window {
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.05);
+  }
+  .animate-item {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease 1.5s, transform 0.6s ease 1.5s;
+  }
+  .animate-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const cmd = "ssh ssh.talesmiguel.dev";
+  const el = document.getElementById("terminal-cmd")!;
+  const cursor = document.getElementById("terminal-cursor")!;
+  const output = document.getElementById("terminal-output")!;
+  let i = 0;
+
+  function typeCmd() {
+    if (i < cmd.length) {
+      el.textContent += cmd[i];
+      i++;
+      setTimeout(typeCmd, 60 + Math.random() * 40);
+    } else {
+      // Hide cursor, show output
+      setTimeout(() => {
+        cursor.style.display = "none";
+        output.classList.remove("hidden");
+
+        // Trigger CTA animation
+        const cta = document.querySelector("#terminal .animate-item");
+        if (cta) cta.classList.add("visible");
+      }, 500);
+    }
+  }
+
+  // Start typing when section is visible
+  const section = document.getElementById("terminal")!;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          setTimeout(typeCmd, 800);
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  observer.observe(section);
+</script>
