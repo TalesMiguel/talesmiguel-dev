@@ -20,10 +20,10 @@ const links = [
 
 <section id="contact" class="px-6 flex flex-col items-center justify-center">
   <div id="contact-inner" class="w-full max-w-2xl text-center animate-item">
-    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-6 block">Contact</span>
-    <h2 class="text-text text-4xl font-semibold mb-12">Let's connect.</h2>
+    <span class="font-mono text-accent text-sm tracking-widest uppercase block" style="margin-bottom: 1.5rem;">Contact</span>
+    <h2 class="text-text text-4xl font-semibold" style="margin-bottom: 3rem;">Let's connect.</h2>
 
-    <div class="flex gap-10 justify-center mb-20">
+    <div class="flex gap-10 justify-center" style="margin-bottom: 4rem;">
       {links.map((link) => (
         <a
           href={link.href}
@@ -36,7 +36,7 @@ const links = [
       ))}
     </div>
 
-    <footer class="border-t border-border pt-8">
+    <footer class="border-t border-border" style="padding-top: 2rem;">
       <p class="font-mono text-muted text-xs">
         © {new Date().getFullYear()} Tales Miguel · talesmiguel.dev
       </p>
