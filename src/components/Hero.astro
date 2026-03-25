@@ -30,6 +30,10 @@
         Scroll down ↓
       </a>
     </div>
+    <p class="font-mono text-muted text-xs mt-8 opacity-0" id="dev-hint">
+      Hint: if you're a developer, try navigating my site via CLI!
+      <a href="#terminal" class="text-accent hover:underline ml-1">See how →</a>
+    </p>
   </div>
 </section>
 
@@ -101,4 +105,13 @@
   cursor.style.opacity = "1";
   // Start typing after short delay — blink begins only after typing completes
   setTimeout(type, 400);
+
+  // Show dev hint after typing completes
+  setTimeout(() => {
+    const hint = document.getElementById('dev-hint');
+    if (hint) {
+      hint.style.transition = 'opacity 1s ease';
+      hint.style.opacity = '1';
+    }
+  }, 3000);
 </script>
