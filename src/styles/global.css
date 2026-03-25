@@ -18,8 +18,9 @@
   padding: 0;
 }
 
-html, body {
+html {
   height: 100%;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -29,14 +30,18 @@ body {
   color: var(--color-text);
   font-family: var(--font-family-sans);
   line-height: 1.6;
-  overflow: hidden scroll;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
 
 section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 ::selection {
