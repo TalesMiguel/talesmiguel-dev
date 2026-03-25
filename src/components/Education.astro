@@ -1,0 +1,55 @@
+---
+const items = [
+  {
+    title: "MSc in Computer Science",
+    org: "UNIFESP — Federal University of São Paulo",
+    period: "2024 – present",
+    description: "Research in Artificial Neural Networks, Machine Learning, and Agentic Systems.",
+  },
+  {
+    title: "BSc in Science and Technology",
+    org: "UNIFESP — Federal University of São Paulo",
+    period: "2020 – 2024",
+    description: "Undergraduate degree with focus on algorithms, data structures, and software engineering.",
+  },
+];
+---
+
+<section id="education" class="bg-surface px-6 flex flex-col items-center justify-center">
+  <div class="w-full max-w-2xl">
+    <span class="font-mono text-accent text-sm tracking-widest uppercase block text-center animate-item" style="margin-bottom: 3rem;">Education</span>
+
+    <div class="relative border-l-2 border-border pl-8" style="display: flex; flex-direction: column; gap: 3.5rem;">
+      {items.map((item) => (
+        <div class="relative animate-item">
+          <div class="absolute -left-[41px] w-4 h-4 rounded-full bg-surface border-2 border-accent"></div>
+          <span class="font-mono text-accent text-xs tracking-widest uppercase">{item.period}</span>
+          <h3 class="text-text font-semibold text-lg" style="margin-top: 0.5rem;">{item.title}</h3>
+          <p class="text-muted text-sm" style="margin-top: 0.25rem;">{item.org}</p>
+          <p class="text-muted text-sm leading-relaxed" style="margin-top: 1rem;">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-item {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .animate-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll('#education .animate-item');
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  items.forEach(el => observer.observe(el));
+</script>

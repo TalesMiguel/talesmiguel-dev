@@ -7,12 +7,6 @@ const items = [
     description: "Failure prediction models for commercial aircraft (E2 jets) using Random Forest, KNN, XGBoost, PyTorch and TensorFlow. Led backend and infrastructure development for an aircraft data platform — database modeling, API design, and implementation.",
   },
   {
-    title: "MSc in Computer Science",
-    org: "UNIFESP — Federal University of São Paulo",
-    period: "2024 – present",
-    description: "Research in Artificial Neural Networks, Machine Learning, and Agentic Systems.",
-  },
-  {
     title: "Full-Stack Web Developer",
     org: "TORQI S.A.",
     period: "Jan 2023 – May 2023",
@@ -24,27 +18,21 @@ const items = [
     period: "Nov 2020 – Dec 2022",
     description: "Built microservices, APIs, and full projects for the customer service platform. Focused on scalability and observability. Mentored interns and delivered internal tech talks.",
   },
-  {
-    title: "BSc in Science and Technology",
-    org: "UNIFESP — Federal University of São Paulo",
-    period: "2020 – 2024",
-    description: "Undergraduate degree with focus on algorithms, data structures, and software engineering.",
-  },
 ];
 ---
 
-<section id="experience" class="bg-surface py-16 px-6 flex flex-col items-center overflow-y-auto">
+<section id="experience" class="px-6 flex flex-col items-center justify-center">
   <div class="w-full max-w-2xl">
-    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-12 block text-center animate-item">Experience & Education</span>
+    <span class="font-mono text-accent text-sm tracking-widest uppercase block text-center animate-item" style="margin-bottom: 3rem;">Experience</span>
 
-    <div class="relative border-l-2 border-border pl-8 space-y-16">
+    <div class="relative border-l-2 border-border pl-8" style="display: flex; flex-direction: column; gap: 3.5rem;">
       {items.map((item) => (
         <div class="exp-item relative animate-item">
-          <div class="absolute -left-[41px] w-4 h-4 rounded-full bg-surface border-2 border-accent"></div>
+          <div class="absolute -left-[41px] w-4 h-4 rounded-full bg-bg border-2 border-accent"></div>
           <span class="font-mono text-accent text-xs tracking-widest uppercase">{item.period}</span>
-          <h3 class="text-text font-semibold text-lg mt-2">{item.title}</h3>
-          <p class="text-muted text-sm mt-1">{item.org}</p>
-          <p class="text-muted text-sm mt-4 leading-relaxed">{item.description}</p>
+          <h3 class="text-text font-semibold text-lg" style="margin-top: 0.5rem;">{item.title}</h3>
+          <p class="text-muted text-sm" style="margin-top: 0.25rem;">{item.org}</p>
+          <p class="text-muted text-sm leading-relaxed" style="margin-top: 1rem;">{item.description}</p>
         </div>
       ))}
     </div>

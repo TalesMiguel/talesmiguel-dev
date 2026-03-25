@@ -21,9 +21,9 @@ const categories = [
 
 <section id="skills" class="px-6 flex flex-col items-center justify-center">
   <div class="w-full max-w-3xl text-center">
-    <span class="font-mono text-accent text-sm tracking-widest uppercase mb-12 block animate-item">Skills</span>
+    <span class="font-mono text-accent text-sm tracking-widest uppercase block animate-item" style="margin-bottom: 3rem;">Skills</span>
 
-    <div class="space-y-14">
+    <div style="display: flex; flex-direction: column; gap: 3.5rem;">
       {categories.map((cat) => (
         <div class="animate-item">
           <h3 class="font-mono text-muted text-xs tracking-widest uppercase mb-5">{cat.label}</h3>
