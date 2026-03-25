@@ -33,8 +33,36 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
+  overflow: hidden;
+}
+
+/* About view: scroll-snap container below the nav */
+#view-about {
+  position: fixed;
+  top: 48px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+}
+
+/* Terminal view: fullscreen overlay below the nav, hidden by default */
+#view-terminal {
+  position: fixed;
+  top: 48px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#view-terminal.hidden {
+  display: none;
 }
 
 section {

@@ -1,0 +1,55 @@
+---
+// No server-side props
+---
+
+<nav id="tab-nav" class="fixed top-0 left-0 right-0 z-50 flex items-center gap-6 px-6 border-b border-border font-mono text-sm" style="height: 48px; background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);">
+  <span class="text-accent mr-2">~/tales</span>
+  <button
+    id="btn-about"
+    class="tab-btn text-text border-b-2 border-accent pb-px transition-colors duration-200"
+    style="background: none; cursor: pointer;"
+  >
+    about me
+  </button>
+  <button
+    id="btn-terminal"
+    class="tab-btn text-muted border-b-2 border-transparent pb-px hover:text-text transition-colors duration-200"
+    style="background: none; cursor: pointer;"
+  >
+    terminal
+  </button>
+</nav>
+
+<script>
+  const btnAbout    = document.getElementById('btn-about')!;
+  const btnTerminal = document.getElementById('btn-terminal')!;
+  const viewTerminal = document.getElementById('view-terminal')!;
+
+  function activate(tab: 'about' | 'terminal') {
+    const isTerminal = tab === 'terminal';
+
+    // Toggle overlay
+    if (isTerminal) {
+      viewTerminal.classList.remove('hidden');
+    } else {
+      viewTerminal.classList.add('hidden');
+    }
+
+    // Update button styles
+    btnAbout.classList.toggle('text-text',    !isTerminal);
+    btnAbout.classList.toggle('border-accent', !isTerminal);
+    btnAbout.classList.toggle('text-muted',    isTerminal);
+    btnAbout.classList.toggle('border-transparent', isTerminal);
+
+    btnTerminal.classList.toggle('text-text',    isTerminal);
+    btnTerminal.classList.toggle('border-accent', isTerminal);
+    btnTerminal.classList.toggle('text-muted',    !isTerminal);
+    btnTerminal.classList.toggle('border-transparent', !isTerminal);
+  }
+
+  btnAbout.addEventListener('click',    () => activate('about'));
+  btnTerminal.addEventListener('click', () => activate('terminal'));
+
+  // Expose globally so Hero hint can trigger it
+  (window as any).switchTab = activate;
+</script>
