@@ -2,19 +2,19 @@
 // No server-side props
 ---
 
-<nav id="tab-nav" class="fixed top-0 left-0 right-0 z-50 flex items-center gap-6 px-6 border-b border-border font-mono text-sm" style="height: 48px; background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);">
-  <span class="text-accent mr-2">~/tales</span>
+<nav id="tab-nav" class="fixed top-0 left-0 right-0 z-50 flex items-center border-b border-border font-mono text-sm" style="height: 48px; background: rgba(10,10,10,0.92); backdrop-filter: blur(8px); padding: 0 1rem; gap: 1rem;">
+  <span class="text-accent hidden sm:inline" style="margin-right: 0.5rem;">~/tales</span>
   <button
     id="btn-about"
     class="tab-btn text-text border-b-2 border-accent pb-px transition-colors duration-200"
-    style="background: none; cursor: pointer;"
+    style="background: none; cursor: pointer; white-space: nowrap; padding: 0 0.5rem;"
   >
     about me
   </button>
   <button
     id="btn-terminal"
     class="tab-btn text-muted border-b-2 border-transparent pb-px hover:text-text transition-colors duration-200"
-    style="background: none; cursor: pointer;"
+    style="background: none; cursor: pointer; white-space: nowrap; padding: 0 0.5rem;"
   >
     terminal
   </button>
